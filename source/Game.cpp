@@ -89,12 +89,17 @@ void Game::run() {
         interpolation = ((float) (time(NULL) + skipTicks - nextGameTick)) / ((float) skipTicks);
         this->display(interpolation);
     }
+    this->close();
 }
 
 char* Game::getError() {
     return this->error;
 }
-
+void Game::close(){
+    SDL_DestroyRenderer(this->renderer);
+    SDL_DestroyWindow(this->window);
+    SDL_Quit();
+}
 void Game::update() {
 
 }

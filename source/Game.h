@@ -47,6 +47,7 @@ private:
     SDL_Renderer *renderer = NULL;
     void update();
     void display(float interpolation);
+    void close();
 };
 
 #endif /* GAME_H */
