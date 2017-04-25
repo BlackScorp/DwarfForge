@@ -29,8 +29,44 @@
  * Created on 25. April 2017, 19:02
  */
 
+#include <time.h>
+#include <stdio.h>
 #include "Game.h"
 
 Game::Game() {
+
 }
 
+void Game::run() {
+    time_t nextGameTick;
+
+
+    Game::isRunning = true;
+
+    int tiksPerSecond = 25;
+    int skipTicks = 1000 / tiksPerSecond;
+    int maxFrameSkip = 5;
+    int loops;
+    float interpolation;
+
+    nextGameTick = time(NULL);
+
+    while (Game::isRunning) {
+        loops = 0;
+        while (time(NULL) > nextGameTick && loops < maxFrameSkip) {
+            this->update();
+            nextGameTick +=skipTicks;
+            loops++;
+        }
+        interpolation = (float)(time(NULL) + skipTicks - nextGameTick) / (float)skipTicks;
+        this->display(interpolation);
+    }
+}
+
+void Game::update(){
+  
+}
+
+void Game::display(float interpolation){
+     
+}

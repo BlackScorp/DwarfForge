@@ -34,11 +34,10 @@
 #include <SDL2/SDL.h>
 #include "source/Game.h"
 
-/*
- * 
- */
-int main(int argc, char** argv) {
 
+int main(int argc, char** argv) {
+    Game* game = new Game();
+    game->run();
     return 0;
 }
 

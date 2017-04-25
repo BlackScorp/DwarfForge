@@ -34,9 +34,12 @@
 
 class Game {
 public:
+    bool isRunning;
     Game();
+    void run();
 private:
-
+    void update();
+    void display(float interpolation);
 };
 
 #endif /* GAME_H */

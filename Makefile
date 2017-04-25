@@ -1,4 +1,5 @@
-OBJECTS = main.cpp
+OBJECTS = main.cpp\
+	  source/Game.cpp
 
 OUTPUT_FILE_NAME = DwarfForge
 
@@ -15,5 +16,5 @@ COMPILER_FLAGS = -w -Wl,-subsystem,windows
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
 
 all: $(OBJECTS)
-	   $(COMPILER) $(OBJECTS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OUTPUT_FILE_NAME)
+	   $(COMPILER) $(OBJECTS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OUTPUT_FILE_NAME) 
 	   cp -f $(SDL_DLL_PATH) SDL2.dll 
