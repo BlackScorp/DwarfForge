@@ -29,9 +29,6 @@
  * Created on 25. April 2017, 19:02
  */
 
-#include <time.h>
-#include <stdio.h>
-#include <SDL2/SDL.h>
 #include "Game.h"
 
 Game::Game() {
@@ -39,12 +36,11 @@ Game::Game() {
 }
 
 bool Game::init() {
-    
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        sprintf(this->error,"SDL could not initialize! SDL_Error: %s\n",SDL_GetError());
+        sprintf(this->error, "SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return false;
     }
-    
+
     this->window = SDL_CreateWindow("Dwarf Forge",
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
@@ -52,13 +48,13 @@ bool Game::init() {
             768, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
     if (NULL == this->window) {
-        sprintf(this->error,"Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        sprintf(this->error, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return false;
     }
     this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_SOFTWARE);
 
     if (NULL == this->renderer) {
-        sprintf(this->error,"Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        sprintf(this->error, "Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
         return false;
     }
 
@@ -66,8 +62,6 @@ bool Game::init() {
 }
 
 void Game::run() {
-    
-
 
     Game::isRunning = true;
     time_t nextGameTick;
@@ -95,11 +89,14 @@ void Game::run() {
 char* Game::getError() {
     return this->error;
 }
-void Game::close(){
+
+void Game::close() {
+
     SDL_DestroyRenderer(this->renderer);
     SDL_DestroyWindow(this->window);
     SDL_Quit();
 }
+
 void Game::update() {
 
 }

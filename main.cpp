@@ -29,7 +29,6 @@
  * Created on 25. April 2017, 18:33
  */
 
-#define SDL_MAIN_HANDLED /*We need this because SDL has his own main() function and we get an error if we compile*/
 #include <stdio.h>
 #include <iostream>
 #include "source/Game.h"

@@ -32,6 +32,10 @@
 #ifndef GAME_H
 #define GAME_H
 
+#define SDL_MAIN_HANDLED /*We need this because SDL has his own main() function and we get an error if we compile*/
+
+#include <time.h>
+#include <stdio.h>
 #include <SDL2/SDL.h>
 
 class Game {
