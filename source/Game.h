@@ -32,12 +32,19 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <SDL2/SDL.h>
+
 class Game {
 public:
     bool isRunning;
+    char* error;
     Game();
     void run();
+    bool init();
+    char* getError();
 private:
+    SDL_Window *window = NULL;
+    SDL_Renderer *renderer = NULL;
     void update();
     void display(float interpolation);
 };

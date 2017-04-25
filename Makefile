@@ -11,7 +11,7 @@ LIBRARY_PATHS = -LC:\SDL2-2.0.5\x86_64-w64-mingw32\lib
 
 SDL_DLL_PATH = C:\SDL2-2.0.5\x86_64-w64-mingw32\bin\SDL2.dll
 
-COMPILER_FLAGS = -w -Wl,-subsystem,windows
+COMPILER_FLAGS = -w -Wall 
 
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
 

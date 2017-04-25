@@ -31,18 +31,46 @@
 
 #include <time.h>
 #include <stdio.h>
+#include <SDL2/SDL.h>
 #include "Game.h"
 
 Game::Game() {
 
 }
 
+bool Game::init() {
+    
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        sprintf(this->error,"SDL could not initialize! SDL_Error: %s\n",SDL_GetError());
+        return false;
+    }
+    
+    this->window = SDL_CreateWindow("Dwarf Forge",
+            SDL_WINDOWPOS_UNDEFINED,
+            SDL_WINDOWPOS_UNDEFINED,
+            1024,
+            768, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+
+    if (NULL == this->window) {
+        sprintf(this->error,"Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        return false;
+    }
+    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_SOFTWARE);
+
+    if (NULL == this->renderer) {
+        sprintf(this->error,"Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        return false;
+    }
+
+    return true;
+}
+
 void Game::run() {
-    time_t nextGameTick;
+    
 
 
     Game::isRunning = true;
-
+    time_t nextGameTick;
     int tiksPerSecond = 25;
     int skipTicks = 1000 / tiksPerSecond;
     int maxFrameSkip = 5;
@@ -55,18 +83,22 @@ void Game::run() {
         loops = 0;
         while (time(NULL) > nextGameTick && loops < maxFrameSkip) {
             this->update();
-            nextGameTick +=skipTicks;
+            nextGameTick += skipTicks;
             loops++;
         }
-        interpolation = (float)(time(NULL) + skipTicks - nextGameTick) / (float)skipTicks;
+        interpolation = ((float) (time(NULL) + skipTicks - nextGameTick)) / ((float) skipTicks);
         this->display(interpolation);
     }
 }
 
-void Game::update(){
-  
+char* Game::getError() {
+    return this->error;
 }
 
-void Game::display(float interpolation){
-     
+void Game::update() {
+
+}
+
+void Game::display(float interpolation) {
+
 }

@@ -30,13 +30,17 @@
  */
 
 #define SDL_MAIN_HANDLED /*We need this because SDL has his own main() function and we get an error if we compile*/
-
-#include <SDL2/SDL.h>
+#include <stdio.h>
+#include <iostream>
 #include "source/Game.h"
 
 
 int main(int argc, char** argv) {
     Game* game = new Game();
+    if(false == game->init()){
+        std::cout << game->getError();
+        return -1;
+    }
     game->run();
     return 0;
 }
