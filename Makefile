@@ -4,7 +4,7 @@ OUTPUT_FILE_NAME = DwarfForge
 
 COMPILER = g++
 
-INCLUDE_PATHS = -ICC:\SDL2-2.0.5\x86_64-w64-mingw32\include\SDL2
+INCLUDE_PATHS = -IC:\SDL2-2.0.5\x86_64-w64-mingw32\include
 	
 LIBRARY_PATHS = -LC:\SDL2-2.0.5\x86_64-w64-mingw32\lib
 

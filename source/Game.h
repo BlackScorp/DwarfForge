@@ -23,22 +23,21 @@
  */
 
 /* 
- * File:   main.cpp
+ * File:   Game.h
  * Author: BlackScorp
  *
- * Created on 25. April 2017, 18:33
+ * Created on 25. April 2017, 19:02
  */
 
-#define SDL_MAIN_HANDLED /*We need this because SDL has his own main() function and we get an error if we compile*/
+#ifndef GAME_H
+#define GAME_H
 
-#include <SDL2/SDL.h>
-#include "source/Game.h"
+class Game {
+public:
+    Game();
+private:
 
-/*
- * 
- */
-int main(int argc, char** argv) {
+};
 
-    return 0;
-}
+#endif /* GAME_H */
 
