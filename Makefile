@@ -2,18 +2,17 @@ OBJECTS = main.cpp\
 	  source/Game.cpp
 	     
 OUTPUT_FILE_NAME = DwarfForge
-
 COMPILER = g++
 
-INCLUDE_PATHS = -I"C:\SDL2-2.0.5\x86_64-w64-mingw32\include"
 	
-LIBRARY_PATHS = -L"C:\SDL2-2.0.5\x86_64-w64-mingw32\lib"
+INCLUDE_PATHS = -I"$(SDL_PATH)\include"
 	
-SDL_DLL_PATH = C:\SDL2-2.0.5\x86_64-w64-mingw32\bin\SDL2.dll
+LIBRARY_PATHS = -L"$(SDL_PATH)\lib"
+	
 
 COMPILER_FLAGS = -Wall
 
-LINKER_FLAGS =  -lmingw32 -lSDL2  -lSDL2main 
+LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 
 
 all: $(OBJECTS)
 	$(COMPILER) $(OBJECTS) $(COMPILER_FLAGS) -o $(OUTPUT_FILE_NAME) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(LINKER_FLAGS)    
