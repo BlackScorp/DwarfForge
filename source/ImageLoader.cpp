@@ -34,31 +34,44 @@
 ImageLoader::ImageLoader() {
 }
 
-std::string getCurrentWorkingDir() {
+std::string ImageLoader::getCurrentWorkingDir() {
     char buffer[FILENAME_MAX];
     GetCurrentDir(buffer, FILENAME_MAX);
     std::string currentWorkingDir(buffer);
     return currentWorkingDir;
 }
 
-std::vector<std::string> getFilesInFolder(std::string folderName) {
-    DIR *folder;
+std::vector<std::string> ImageLoader::getFilesInFolder(std::string folderName) {
+    DIR * folderHandle;
     std::vector<std::string> files;
     std::string path = getCurrentWorkingDir();
-    
+    dirent* fileHandle = NULL;
+
     if ("" != folderName) {
         path += DIRECTORY_SEPERATOR + folderName;
     }
 
-    folder = opendir(path.c_str());
+    folderHandle = opendir(path.c_str());
 
-    if (false == folder) {
+    if (false == folderHandle) {
         return files;
     }
+
+    while (NULL != (fileHandle = readdir(folderHandle))) {
+        if ("." == std::string(fileHandle->d_name) ||
+                ".." == std::string(fileHandle->d_name)) {
+            continue;
+        }
+        files.push_back(std::string(path+DIRECTORY_SEPERATOR+fileHandle->d_name));
+    }
+    closedir(folderHandle);
     return files;
 }
 
 void ImageLoader::load(SDL_Renderer* renderer) {
     std::vector<std::string> files = getFilesInFolder("media/images");
 
+    for (std::vector<std::string>::iterator iterator = files.begin(); iterator != files.end(); ++iterator) {
+        std::cout << *iterator;
+    }
 }
