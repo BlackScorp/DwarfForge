@@ -35,12 +35,13 @@
 
 
 int main(int argc, char** argv) {
-    Game* game = new Game();
-    if(false == game->init()){
-        std::cout << game->getError();
+    
+    Game game;
+    if(false == game.init()){
+        std::cout << game.getError();
         return -1;
     }
-    game->run();
+    game.run();
     return 0;
 }
 

@@ -75,8 +75,8 @@ void Game::run() {
 
     unsigned int nextGameTick = SDL_GetTicks();
     
-    MainScene* scene = new MainScene;
-    scene->render();
+    MainScene scene;
+    scene.render();
     
     while (Game::isRunning) {
         loops = 0;
