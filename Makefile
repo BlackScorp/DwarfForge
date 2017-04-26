@@ -1,5 +1,6 @@
 OBJECTS = main.cpp\
 	  source/Game.cpp\
+	  source/MainScene.cpp\
 
 	     
 OUTPUT_FILE_NAME = DwarfForge

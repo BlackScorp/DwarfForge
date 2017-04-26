@@ -30,6 +30,7 @@
  */
 
 #include "Game.h"
+#include "MainScene.h"
 
 Game::Game() {
 
@@ -73,9 +74,10 @@ void Game::run() {
     float interpolation;
 
     unsigned int nextGameTick = SDL_GetTicks();
-
-
-
+    
+    MainScene* scene = new MainScene;
+    scene->render();
+    
     while (Game::isRunning) {
         loops = 0;
         while (SDL_GetTicks() > nextGameTick && loops < maxFrameSkip) {
