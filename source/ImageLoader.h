@@ -23,25 +23,42 @@
  */
 
 /* 
- * File:   MainScene.h
+ * File:   ImageLoader.h
  * Author: BlackScorp
  *
- * Created on 26. April 2017, 18:23
+ * Created on 26. April 2017, 20:05
  */
 
-#ifndef MAINSCENE_H
-#define MAINSCENE_H
+#ifndef IMAGELOADER_H
+#define IMAGELOADER_H
+
+#ifdef __WIN32__
+#include <direct.h>
+#define GetCurrentDir _getcwd
+
+#define DIRECTORY_SEPERATOR "\\"
+
+#else
+#include <unistd.h>
+#define GetCurrentDir getcwd
+#define DIRECTORY_SEPERATOR "/"
+#endif
 
 #include <SDL_render.h>
-#include "ImageLoader.h"
+#include <vector>
+#include <string>
+#include <dirent.h>
+#include <iostream>
 
-class MainScene {
+
+class ImageLoader {
 public:
-    MainScene(SDL_Renderer* renderer);
-    void render();
+    ImageLoader();
+    void load(SDL_Renderer* renderer);
 private:
-    SDL_Renderer* renderer = NULL;
+    std::vector<std::string> getFilesInFolder(std::string folderName);
+    std::string getCurrentWorkingDir();
 };
 
-#endif /* MAINSCENE_H */
+#endif /* IMAGELOADER_H */
 

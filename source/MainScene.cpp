@@ -29,11 +29,15 @@
  * Created on 26. April 2017, 18:23
  */
 
+
 #include "MainScene.h"
 
-MainScene::MainScene() {
+
+MainScene::MainScene(SDL_Renderer* renderer) {
+    this->renderer = renderer;
 }
 
-void MainScene::render(){
-    
+void MainScene::render() {
+    ImageLoader imageLoader;
+    imageLoader.load(this->renderer);
 }

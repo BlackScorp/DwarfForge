@@ -30,7 +30,6 @@
  */
 
 #include "Game.h"
-#include "MainScene.h"
 
 Game::Game() {
 
@@ -48,7 +47,7 @@ bool Game::init() {
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
             1024,
-            768, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+            768, SDL_WINDOW_SHOWN);
 
     if (NULL == this->window) {
         sprintf(this->error, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -58,6 +57,10 @@ bool Game::init() {
 
     if (NULL == this->renderer) {
         sprintf(this->error, "Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        return false;
+    }
+    if (false == (IMG_Init(IMG_INIT_PNG))) {
+        sprintf(this->error, "Could not initialize SDL_Image! IMG_Error : %s\n", IMG_GetError());
         return false;
     }
 
@@ -74,10 +77,10 @@ void Game::run() {
     float interpolation;
 
     unsigned int nextGameTick = SDL_GetTicks();
-    
-    MainScene scene;
+
+    MainScene scene(this->renderer);
     scene.render();
-    
+
     while (Game::isRunning) {
         loops = 0;
         while (SDL_GetTicks() > nextGameTick && loops < maxFrameSkip) {
@@ -100,6 +103,7 @@ void Game::close() {
 
     SDL_DestroyRenderer(this->renderer);
     SDL_DestroyWindow(this->window);
+    IMG_Quit();
     SDL_Quit();
 }
 

@@ -37,7 +37,8 @@
 #include <time.h>
 #include <stdio.h>
 #include <SDL2/SDL.h>
-
+#include <SDL2/SDL_image.h>
+#include "MainScene.h"
 
 class Game {
 public:

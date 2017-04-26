@@ -23,25 +23,42 @@
  */
 
 /* 
- * File:   MainScene.h
+ * File:   ImageLoader.cpp
  * Author: BlackScorp
- *
- * Created on 26. April 2017, 18:23
+ * 
+ * Created on 26. April 2017, 20:05
  */
 
-#ifndef MAINSCENE_H
-#define MAINSCENE_H
-
-#include <SDL_render.h>
 #include "ImageLoader.h"
 
-class MainScene {
-public:
-    MainScene(SDL_Renderer* renderer);
-    void render();
-private:
-    SDL_Renderer* renderer = NULL;
-};
+ImageLoader::ImageLoader() {
+}
 
-#endif /* MAINSCENE_H */
+std::string getCurrentWorkingDir() {
+    char buffer[FILENAME_MAX];
+    GetCurrentDir(buffer, FILENAME_MAX);
+    std::string currentWorkingDir(buffer);
+    return currentWorkingDir;
+}
 
+std::vector<std::string> getFilesInFolder(std::string folderName) {
+    DIR *folder;
+    std::vector<std::string> files;
+    std::string path = getCurrentWorkingDir();
+    
+    if ("" != folderName) {
+        path += DIRECTORY_SEPERATOR + folderName;
+    }
+
+    folder = opendir(path.c_str());
+
+    if (false == folder) {
+        return files;
+    }
+    return files;
+}
+
+void ImageLoader::load(SDL_Renderer* renderer) {
+    std::vector<std::string> files = getFilesInFolder("media/images");
+
+}
