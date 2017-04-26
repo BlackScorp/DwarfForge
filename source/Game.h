@@ -38,17 +38,20 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+
 class Game {
 public:
-    bool isRunning;
-    char* error;
+    static bool isRunning;
     Game();
     void run();
     bool init();
     char* getError();
 private:
+    char* error;
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
+    SDL_Event event;
+    void poolEvents();
     void update();
     void display(float interpolation);
     void close();

@@ -35,6 +35,8 @@ Game::Game() {
 
 }
 
+bool Game::isRunning = false;
+
 bool Game::init() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         sprintf(this->error, "SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -64,23 +66,25 @@ bool Game::init() {
 void Game::run() {
 
     Game::isRunning = true;
-    time_t nextGameTick;
     int tiksPerSecond = 25;
     int skipTicks = 1000 / tiksPerSecond;
     int maxFrameSkip = 5;
     int loops;
     float interpolation;
 
-    nextGameTick = time(NULL);
+    unsigned int nextGameTick = SDL_GetTicks();
+
+
 
     while (Game::isRunning) {
         loops = 0;
-        while (time(NULL) > nextGameTick && loops < maxFrameSkip) {
+        while (SDL_GetTicks() > nextGameTick && loops < maxFrameSkip) {
+            this->poolEvents();
             this->update();
             nextGameTick += skipTicks;
             loops++;
         }
-        interpolation = ((float) (time(NULL) + skipTicks - nextGameTick)) / ((float) skipTicks);
+        interpolation = ((float) (SDL_GetTicks() + skipTicks - nextGameTick)) / ((float) skipTicks);
         this->display(interpolation);
     }
     this->close();
@@ -95,6 +99,35 @@ void Game::close() {
     SDL_DestroyRenderer(this->renderer);
     SDL_DestroyWindow(this->window);
     SDL_Quit();
+}
+
+void Game::poolEvents() {
+    while (SDL_PollEvent(&this->event)) {
+
+        switch (this->event.type) {
+            case SDL_QUIT:
+            {
+                Game::isRunning = false;
+                break;
+            }
+            case SDL_KEYDOWN:
+            {
+                /**
+                 * TODO : Move this to keyboard manager or something like this 
+                 */
+                SDL_Keysym *keysym = &this->event.key.keysym;
+
+                switch (keysym->sym) {
+                    case SDLK_ESCAPE:
+                    {
+                        Game::isRunning = false;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
 }
 
 void Game::update() {
