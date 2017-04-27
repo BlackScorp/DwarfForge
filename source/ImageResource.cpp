@@ -32,19 +32,24 @@
 
 
 #include "ImageResource.h"
-
- ImageResource::ImageResource(SDL_Renderer* _renderer, std::string _fileName){
-     if(NULL == _renderer){
+ImageResource::~ImageResource(){
+     if(texture){
+         SDL_DestroyTexture(texture);
+         texture = NULL;
+     }
+ }
+ ImageResource::ImageResource(SDL_Renderer* renderer, std::string fileName){
+     if(NULL == renderer){
          return;
      }
-     renderer = _renderer;
-     fileName = _fileName;
+     renderer = renderer;
+     fileName = fileName;
      
      SDL_Surface *surface = IMG_Load(fileName.c_str());
      if(NULL == surface){
          return;
      }
-     this->texture = SDL_CreateTextureFromSurface(renderer,surface);
+     texture = SDL_CreateTextureFromSurface(renderer,surface);
      if(NULL == texture){
          return;
      }

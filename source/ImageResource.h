@@ -41,9 +41,10 @@
 class ImageResource : public Resource {
 public:
     ImageResource(SDL_Renderer* renderer, std::string fileName);
+    ~ImageResource();
 private:
     SDL_Renderer* renderer = NULL;
-    SDL_Texture* texture;
+    SDL_Texture* texture = NULL;
     std::string fileName;
     int width;
     int height;
