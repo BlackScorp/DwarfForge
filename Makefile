@@ -5,6 +5,8 @@ OBJECTS = main.cpp\
 	  source/Resource.cpp\
 	  source/ResourceManager.cpp\
 	  source/ImageResource.cpp\
+	  source/Entity.cpp\
+	  source/EntityManager.cpp\
 	
 OUTPUT_FILE_NAME = DwarfForge
 COMPILER = g++
