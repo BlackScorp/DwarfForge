@@ -2,7 +2,9 @@ OBJECTS = main.cpp\
 	  source/Game.cpp\
 	  source/MainScene.cpp\
 	  source/ImageLoader.cpp\
-	 
+	  source/Resource.cpp\
+	  source/ResourceManager.cpp\
+	  source/ImageResource.cpp\
 	
 OUTPUT_FILE_NAME = DwarfForge
 COMPILER = g++
