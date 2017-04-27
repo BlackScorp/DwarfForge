@@ -34,13 +34,15 @@
 
 #include <SDL_render.h>
 #include "ImageLoader.h"
-
+#include "EntityManager.h"
+#include "Shapes/Rect.h"
 class MainScene {
 public:
-    MainScene(SDL_Renderer* renderer);
+    MainScene(SDL_Renderer* renderer,EntityManager* entityManager);
     void render();
 private:
     SDL_Renderer* renderer = NULL;
+    EntityManager* entityManager;
 };
 
 #endif /* MAINSCENE_H */

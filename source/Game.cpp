@@ -37,6 +37,7 @@ Game::Game() {
 
 bool Game::isRunning = false;
 
+
 bool Game::init() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         sprintf(this->error, "SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -53,7 +54,7 @@ bool Game::init() {
         sprintf(this->error, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
         return false;
     }
-    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_SOFTWARE);
+    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
 
     if (NULL == this->renderer) {
         sprintf(this->error, "Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -78,7 +79,11 @@ void Game::run() {
 
     unsigned int nextGameTick = SDL_GetTicks();
 
-    MainScene scene(this->renderer);
+
+
+    EntityManager *entityManager = new EntityManager();
+    this->entityManager = entityManager;
+    MainScene scene(this->renderer, this->entityManager);
     scene.render();
 
     while (Game::isRunning) {
@@ -142,4 +147,6 @@ void Game::update() {
 
 void Game::display(float interpolation) {
 
+    this->entityManager->draw(this->renderer, interpolation);
+    SDL_RenderPresent(this->renderer);
 }
