@@ -29,6 +29,8 @@
  * Created on 27. April 2017, 20:25
  */
 
+#include <iostream>
+
 #include "Entity.h"
 
 Entity::Entity() {
@@ -43,5 +45,5 @@ std::string Entity::getId() {
 }
 
 void Entity::onDraw(SDL_Renderer* renderer, float interpolation) {
-
+    std::cout << "render\n";
 }

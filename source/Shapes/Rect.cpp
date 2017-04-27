@@ -44,7 +44,7 @@ Rect::~Rect() {
 }
 
 void Rect::onDraw(SDL_Renderer* renderer,float interpolation) {
-    std::cout << "Draw rect";
+   
   SDL_Rect r;
     r.x = x;
     r.y = y;

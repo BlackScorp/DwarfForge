@@ -29,6 +29,8 @@
  * Created on 27. April 2017, 20:19
  */
 
+#include <iostream>
+
 #include "EntityManager.h"
 
 EntityManager::EntityManager() {
@@ -48,6 +50,7 @@ Entity* EntityManager::get(std::string Id) {
 
 void EntityManager::draw(SDL_Renderer* renderer, float interpolation) {
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
+       
         iterator->second->onDraw(renderer, interpolation);
     }
 }

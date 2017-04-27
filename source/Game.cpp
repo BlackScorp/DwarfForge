@@ -80,9 +80,7 @@ void Game::run() {
     unsigned int nextGameTick = SDL_GetTicks();
 
 
-
-    EntityManager *entityManager = new EntityManager();
-    this->entityManager = entityManager;
+    this->entityManager = new EntityManager();
     MainScene scene(this->renderer, this->entityManager);
     scene.render();
 
