@@ -43,7 +43,7 @@ public:
     Resource* get(std::string Id);
     void add(std::string Id,Resource* resource);
 private:
-    static std::map<std::string, Resource*> resources;
+    std::map<std::string, Resource*> resources;
 };
 
 #endif /* RESOURCEMANAGER_H */

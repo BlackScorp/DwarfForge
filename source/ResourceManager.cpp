@@ -34,7 +34,6 @@
 ResourceManager::ResourceManager() {
 }
 
-std::map<std::string, Resource*> ResourceManager::resources;
 
 void ResourceManager::add(std::string Id, Resource* resource) {
     if (Id == "") return;
