@@ -36,6 +36,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <SDL_render.h>
 
 class EntityManager {
 public:
@@ -43,6 +44,7 @@ public:
     ~EntityManager();
     Entity* get(std::string Id);
     void add(Entity* entity);
+    void draw(SDL_Renderer* renderer, float interpolation);
 private:
     std::map<std::string, Entity*> entites;
 };

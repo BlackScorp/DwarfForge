@@ -33,12 +33,14 @@
 #define ENTITY_H
 
 #include <string>
+#include <SDL_render.h>
 
 class Entity {
 public:
     Entity();
     ~Entity();
     std::string getId();
+    void onDraw(SDL_Renderer* renderer, float interpolation);
 protected:
     std::string id;
 };
