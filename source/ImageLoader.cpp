@@ -30,6 +30,8 @@
  */
 
 #include "ImageLoader.h"
+#include "ResourceManager.h"
+
 
 ImageLoader::ImageLoader() {
 }
@@ -46,7 +48,7 @@ std::vector<std::string> ImageLoader::getFilesInFolder(std::string folderName) {
     std::vector<std::string> files;
     std::string path = getCurrentWorkingDir();
     dirent* fileHandle = NULL;
-
+    
     if ("" != folderName) {
         path += DIRECTORY_SEPERATOR + folderName;
     }
@@ -70,8 +72,11 @@ std::vector<std::string> ImageLoader::getFilesInFolder(std::string folderName) {
 
 void ImageLoader::load(SDL_Renderer* renderer) {
     std::vector<std::string> files = getFilesInFolder("media/images");
-
+    ResourceManager resourceManager;
+    
     for (std::vector<std::string>::iterator iterator = files.begin(); iterator != files.end(); ++iterator) {
-        std::cout << *iterator;
+        ImageResource *resource = new ImageResource(renderer,*iterator);
+        
+        resourceManager.add(resource->getId(),resource);
     }
 }
