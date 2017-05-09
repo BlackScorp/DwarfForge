@@ -132,6 +132,7 @@ void Game::poolEvents() {
                         Game::isRunning = false;
                         break;
                     }
+                  
                 }
                 break;
             }

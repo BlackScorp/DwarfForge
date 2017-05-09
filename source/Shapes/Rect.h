@@ -33,6 +33,7 @@
 #define RECT_H
 
 #include <SDL_rect.h>
+#include <SDL_pixels.h>
 #include <SDL_render.h>
 #include "../Entity.h"
 
@@ -41,9 +42,13 @@ public:
     Rect(int width,int height);
     ~Rect();
     void onDraw(SDL_Renderer* renderer,float interpolation);
+    void setColor(SDL_Color &color);
+    void setX(int x);
+    void setY(int y);
 private:
     SDL_Rect rect;
-    int x;
+    SDL_Color color;
+    int x ;
     int y;
     int z;
     int width;

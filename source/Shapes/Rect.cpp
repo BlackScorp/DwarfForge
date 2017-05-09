@@ -29,7 +29,6 @@
  * Created on 27. April 2017, 20:34
  */
 
-#include <iostream>
 
 #include "Rect.h"
 
@@ -42,15 +41,25 @@ Rect::Rect(int width, int height) {
 
 Rect::~Rect() {
 }
+    void Rect::setX(int x){
+        this->x = x;
+    }
+    void Rect::setY(int y){
+        this->y = y;
+    }
+void Rect::setColor(SDL_Color &color) {
+    this->color = color;
+}
 
-void Rect::onDraw(SDL_Renderer* renderer,float interpolation) {
+void Rect::onDraw(SDL_Renderer* renderer, float interpolation) {
+
+
+    this->rect.x = this->x;
+     this->rect.y = this->y;
+     this->rect.w = this->width;
+     this->rect.h = this->height;
    
-  SDL_Rect r;
-    r.x = x;
-    r.y = y;
-    r.w = width;
-    r.h = height;
-    SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
-    SDL_RenderFillRect(renderer, &r);
-    
+       SDL_SetRenderDrawColor(renderer, this->color.r, this->color.g, this->color.b, this->color.a);
+    SDL_RenderFillRect(renderer, &this->rect);
+
 }

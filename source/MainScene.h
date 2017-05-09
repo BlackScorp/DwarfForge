@@ -41,7 +41,7 @@ public:
     MainScene(SDL_Renderer* renderer,EntityManager* entityManager);
     void render();
 private:
-    SDL_Renderer* renderer = NULL;
+    SDL_Renderer* renderer;
     EntityManager* entityManager;
 };
 
