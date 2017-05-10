@@ -41,6 +41,7 @@ public:
     virtual ~Entity();
     std::string getId();
     virtual void onDraw(SDL_Renderer* renderer, float interpolation);
+     virtual void onUpdate(SDL_Renderer* renderer, float interpolation);
 protected:
     std::string id;
 };

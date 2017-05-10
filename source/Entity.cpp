@@ -47,3 +47,6 @@ std::string Entity::getId() {
 void Entity::onDraw(SDL_Renderer* renderer, float interpolation) {
     std::cout << "render\n";
 }
+void Entity::onUpdate(SDL_Renderer* renderer, float interpolation) {
+    std::cout << "update\n";
+}

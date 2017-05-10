@@ -41,8 +41,8 @@ void MainScene::render() {
     ImageLoader imageLoader;
     imageLoader.load(this->renderer);
 
-   // SDL_SetRenderDrawColor(renderer, 123, 120, 115, 255);
-   // SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 123, 120, 115, 255);
+    SDL_RenderClear(renderer);
     
     Rect *testRect = new Rect(100,200);
     

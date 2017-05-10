@@ -41,25 +41,36 @@ Rect::Rect(int width, int height) {
 
 Rect::~Rect() {
 }
-    void Rect::setX(int x){
-        this->x = x;
-    }
-    void Rect::setY(int y){
-        this->y = y;
-    }
+
+void Rect::setX(int x) {
+    this->x = x;
+}
+
+void Rect::setY(int y) {
+    this->y = y;
+}
+
 void Rect::setColor(SDL_Color &color) {
     this->color = color;
 }
 
+void Rect::onUpdate(SDL_Renderer* renderer, float interpolation) {
+    this->x++;
+    if (this->x > 200) {
+        this->x = 0;
+    }
+}
+
 void Rect::onDraw(SDL_Renderer* renderer, float interpolation) {
 
-
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 1);
+    SDL_RenderFillRect(renderer, &this->rect);
     this->rect.x = this->x;
-     this->rect.y = this->y;
-     this->rect.w = this->width;
-     this->rect.h = this->height;
-   
-       SDL_SetRenderDrawColor(renderer, this->color.r, this->color.g, this->color.b, this->color.a);
+    this->rect.y = this->y;
+    this->rect.w = this->width;
+    this->rect.h = this->height;
+
+    SDL_SetRenderDrawColor(renderer, this->color.r, this->color.g, this->color.b, this->color.a);
     SDL_RenderFillRect(renderer, &this->rect);
 
 }

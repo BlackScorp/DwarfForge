@@ -47,7 +47,11 @@ Entity* EntityManager::get(std::string Id) {
     if (entites.find(Id) == entites.end()) return 0;
     return entites[Id];
 }
-
+void EntityManager::update(SDL_Renderer* renderer, float interpolation){
+    for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
+        iterator->second->onUpdate(renderer, interpolation);
+    }
+}
 void EntityManager::draw(SDL_Renderer* renderer, float interpolation) {
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
        
