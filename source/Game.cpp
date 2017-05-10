@@ -30,18 +30,14 @@
  */
 
 #include "Game.h"
-
-Game::Game() {
-
-}
-
 bool Game::isRunning = false;
 
-
-bool Game::init() {
+Game::Game() {
+    char * error = (char*)"";
+    
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        sprintf(this->error, "SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return false;
+        sprintf(error, "SDL could not initialize! SDL_Error: %s \n", SDL_GetError());
+        throw error;
     }
 
     this->window = SDL_CreateWindow("Dwarf Forge",
@@ -51,21 +47,19 @@ bool Game::init() {
             768, SDL_WINDOW_SHOWN);
 
     if (NULL == this->window) {
-        sprintf(this->error, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        return false;
+        sprintf(error, "Window could not be created! SDL_Error: %s \n", SDL_GetError());
+        throw error;
     }
     this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
 
     if (NULL == this->renderer) {
-        sprintf(this->error, "Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
-        return false;
+        sprintf(error, "Renderer could not be created! SDL_Error: %s \n", SDL_GetError());
+        throw error;
     }
     if (false == (IMG_Init(IMG_INIT_PNG))) {
-        sprintf(this->error, "Could not initialize SDL_Image! IMG_Error : %s\n", IMG_GetError());
-        return false;
+        sprintf(error, "Could not initialize SDL_Image! IMG_Error: %s \n", IMG_GetError());
+        throw error;
     }
-
-    return true;
 }
 
 void Game::run() {
@@ -88,7 +82,7 @@ void Game::run() {
         loops = 0;
         while (SDL_GetTicks() > nextGameTick && loops < maxFrameSkip) {
             this->poolEvents();
-            this->update();
+            this->update(interpolation);
             nextGameTick += skipTicks;
             loops++;
         }
@@ -98,9 +92,6 @@ void Game::run() {
     this->close();
 }
 
-char* Game::getError() {
-    return this->error;
-}
 
 void Game::close() {
 
@@ -132,7 +123,7 @@ void Game::poolEvents() {
                         Game::isRunning = false;
                         break;
                     }
-                  
+
                 }
                 break;
             }
@@ -140,8 +131,8 @@ void Game::poolEvents() {
     }
 }
 
-void Game::update() {
-
+void Game::update(float interpolation) {
+    this->entityManager->update(this->renderer, interpolation);
 }
 
 void Game::display(float interpolation) {

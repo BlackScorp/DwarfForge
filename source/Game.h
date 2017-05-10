@@ -45,16 +45,13 @@ public:
     static bool isRunning;
     Game();
     void run();
-    bool init();
-    char* getError();
 private:
-    char* error;
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Event event;
     EntityManager *entityManager;
     void poolEvents();
-    void update();
+    void update(float interpolation);
     void display(float interpolation);
     void close();
 };

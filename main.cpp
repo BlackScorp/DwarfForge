@@ -33,15 +33,14 @@
 #include <iostream>
 #include "source/Game.h"
 
-
 int main(int argc, char** argv) {
-    
-    Game game;
-    if(false == game.init()){
-        std::cout << game.getError();
+    try {
+        Game game;
+        game.run();
+    }catch(char* error){
+         std::cout << error;
         return -1;
     }
-    game.run();
     return 0;
 }
 
