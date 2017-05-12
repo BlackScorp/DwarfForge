@@ -33,17 +33,12 @@
 
 #include "Entity.h"
 
-Entity::Entity() {
-    id="entity1";
-}
-
-Entity::~Entity() {
-}
-
 std::string Entity::getId() {
-    return id;
+    return this->id;
 }
-
+ void Entity::setId(std::string id){
+     this->id = id;
+ }
 void Entity::onDraw(SDL_Renderer* renderer, float interpolation) {
     std::cout << "render\n";
 }

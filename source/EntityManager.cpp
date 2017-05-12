@@ -29,27 +29,35 @@
  * Created on 27. April 2017, 20:19
  */
 
-#include <iostream>
 
+#include <sstream>
 #include "EntityManager.h"
 
-
 void EntityManager::add(Entity *entity) {
-    entites[entity->getId()] = entity;
+    int size = entites.size();
+    
+    std::ostringstream stream;
+    stream << "entity" << ++size;
+    std::string id = stream.str();
+
+    entity->setId(id);
+    entites[id] = entity;
 }
 
 Entity* EntityManager::get(std::string Id) {
     if (entites.find(Id) == entites.end()) return 0;
     return entites[Id];
 }
-void EntityManager::update(SDL_Renderer* renderer, float interpolation){
+
+void EntityManager::update(SDL_Renderer* renderer, float interpolation) {
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
         iterator->second->onUpdate(renderer, interpolation);
     }
 }
+
 void EntityManager::draw(SDL_Renderer* renderer, float interpolation) {
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
-       
+
         iterator->second->onDraw(renderer, interpolation);
     }
 }

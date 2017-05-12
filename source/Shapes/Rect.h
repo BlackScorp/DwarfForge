@@ -40,7 +40,6 @@
 class Rect : public Entity {
 public:
     Rect(int width,int height);
-    ~Rect();
     void onDraw(SDL_Renderer* renderer,float interpolation);
     void onUpdate(SDL_Renderer* renderer,float interpolation);
     void setColor(SDL_Color &color);

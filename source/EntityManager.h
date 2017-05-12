@@ -37,6 +37,7 @@
 #include <string>
 #include <vector>
 #include <SDL_render.h>
+#include <string>
 
 class EntityManager {
 public:

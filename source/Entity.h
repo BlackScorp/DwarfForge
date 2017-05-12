@@ -37,11 +37,10 @@
 
 class Entity {
 public:
-    Entity();
-    virtual ~Entity();
     std::string getId();
+    void setId(std::string id);
     virtual void onDraw(SDL_Renderer* renderer, float interpolation);
-     virtual void onUpdate(SDL_Renderer* renderer, float interpolation);
+    virtual void onUpdate(SDL_Renderer* renderer, float interpolation);
 protected:
     std::string id;
 };

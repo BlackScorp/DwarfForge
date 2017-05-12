@@ -39,9 +39,6 @@ Rect::Rect(int width, int height) {
     this->y = 0;
 }
 
-Rect::~Rect() {
-}
-
 void Rect::setX(int x) {
     this->x = x;
 }
