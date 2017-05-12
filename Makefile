@@ -1,11 +1,7 @@
 OBJECTS = main.cpp\
 	  source/Game.cpp\
 	  source/MainScene.cpp\
-	  source/ImageLoader.cpp\
 	  source/Shapes/Rect.cpp\
-	  source/Resource.cpp\
-	  source/ResourceManager.cpp\
-	  source/ImageResource.cpp\
 	  source/Entity.cpp\
 	  source/EntityManager.cpp\
 	

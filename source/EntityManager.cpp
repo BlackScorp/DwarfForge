@@ -33,13 +33,8 @@
 
 #include "EntityManager.h"
 
-EntityManager::EntityManager() {
-}
 
-EntityManager::~EntityManager() {
-}
-
-void EntityManager::add(Entity* entity) {
+void EntityManager::add(Entity *entity) {
     entites[entity->getId()] = entity;
 }
 

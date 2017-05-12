@@ -33,7 +33,6 @@
 #define MAINSCENE_H
 
 #include <SDL_render.h>
-#include "ImageLoader.h"
 #include "EntityManager.h"
 #include "Shapes/Rect.h"
 class MainScene {

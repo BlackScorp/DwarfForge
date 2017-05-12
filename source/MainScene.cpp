@@ -38,16 +38,17 @@ MainScene::MainScene(SDL_Renderer* renderer,EntityManager* entityManager) {
 }
 
 void MainScene::render() {
-    ImageLoader imageLoader;
-    imageLoader.load(this->renderer);
 
     SDL_SetRenderDrawColor(renderer, 123, 120, 115, 255);
     SDL_RenderClear(renderer);
     
     Rect *testRect = new Rect(100,200);
     
+    
     testRect->setX(100);
     testRect->setY(50);
+    
+    
     SDL_Color color;
     color.r = 90;
     color.b = 0;
@@ -56,9 +57,5 @@ void MainScene::render() {
     
     testRect->setColor(color);
     entityManager->add(testRect);
-    
-  
-
-    
    
 }

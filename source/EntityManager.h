@@ -40,8 +40,6 @@
 
 class EntityManager {
 public:
-    EntityManager();
-    ~EntityManager();
     Entity* get(std::string Id);
     void add(Entity* entity);
     void draw(SDL_Renderer* renderer, float interpolation);
