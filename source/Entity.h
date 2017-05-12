@@ -40,7 +40,7 @@ public:
     std::string getId();
     void setId(std::string id);
     virtual void onDraw(SDL_Renderer* renderer, float interpolation);
-    virtual void onUpdate(SDL_Renderer* renderer, float interpolation);
+    virtual void onUpdate();
 protected:
     std::string id;
 };

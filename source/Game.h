@@ -51,7 +51,7 @@ private:
     SDL_Event event;
     EntityManager *entityManager;
     void poolEvents();
-    void update(float interpolation);
+    void update();
     void display(float interpolation);
     void close();
 };

@@ -49,9 +49,9 @@ Entity* EntityManager::get(std::string Id) {
     return entites[Id];
 }
 
-void EntityManager::update(SDL_Renderer* renderer, float interpolation) {
+void EntityManager::update() {
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
-        iterator->second->onUpdate(renderer, interpolation);
+        iterator->second->onUpdate();
     }
 }
 

@@ -82,7 +82,7 @@ void Game::run() {
         loops = 0;
         while (SDL_GetTicks() > nextGameTick && loops < maxFrameSkip) {
             this->poolEvents();
-            this->update(interpolation);
+            this->update();
             nextGameTick += skipTicks;
             loops++;
         }
@@ -131,8 +131,8 @@ void Game::poolEvents() {
     }
 }
 
-void Game::update(float interpolation) {
-    this->entityManager->update(this->renderer, interpolation);
+void Game::update() {
+    this->entityManager->update();
 }
 
 void Game::display(float interpolation) {

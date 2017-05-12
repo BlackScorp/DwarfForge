@@ -51,7 +51,7 @@ void Rect::setColor(SDL_Color &color) {
     this->color = color;
 }
 
-void Rect::onUpdate(SDL_Renderer* renderer, float interpolation) {
+void Rect::onUpdate() {
     this->x++;
     if (this->x > 200) {
         this->x = 0;
