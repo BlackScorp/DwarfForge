@@ -59,7 +59,8 @@ void MainScene::render() {
     testRect = new Rect(100, 200);
     testRect->setX(100);
     testRect->setY(50);
-    testRect->on("update", [testRect]() {
+
+    testRect->on("update", [testRect](EventData *data) {
         int x = testRect->getX();
         x++;
         if(x > 500){

@@ -32,21 +32,19 @@
 
 #include "Entity.h"
 
-
 std::string Entity::getId() {
     return this->id;
 }
- void Entity::setId(std::string id){
-     this->id = id;
- }
-void Entity::onDraw(SDL_Renderer* renderer, float interpolation) {
-    std::cout << "render\n";
+
+void Entity::setId(std::string id) {
+    this->id = id;
 }
-void  Entity::on(std::string eventName,std::function<void()> callback){
+void Entity::on(std::string eventName, std::function<void(EventData *data) > callback) {
     this->bindings[eventName] = callback;
 }
-void Entity::trigger(std::string eventName,EventData *data){
-     if (this->bindings.find(eventName) != this->bindings.end()){
-         this->bindings[eventName]();
-     };
+
+void Entity::trigger(std::string eventName, EventData *data) {
+    if (this->bindings.find(eventName) != this->bindings.end()) {
+        this->bindings[eventName](data);
+    };
 }

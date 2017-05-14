@@ -38,7 +38,16 @@ Rect::Rect(int width, int height) {
     this->height = height;
     this->x = 0;
     this->y = 0;
-
+    this->on("draw", [this](EventData * data) {
+       
+        this->rect.x = this->x;
+        this->rect.y = this->y;
+        this->rect.w = this->width;
+        this->rect.h = this->height;
+        SDL_SetRenderDrawColor(data->draw.renderer, this->color.r, this->color.g, this->color.b, this->color.a);
+        SDL_RenderFillRect(data->draw.renderer, &this->rect);
+        
+    });
 }
 
 void Rect::setX(int x) {
@@ -59,16 +68,4 @@ int Rect::getY() {
 
 void Rect::setColor(SDL_Color &color) {
     this->color = color;
-}
-
-void Rect::onDraw(SDL_Renderer* renderer, float interpolation) {
-
-
-    this->rect.x = this->x;
-    this->rect.y = this->y;
-    this->rect.w = this->width;
-    this->rect.h = this->height;
-    SDL_SetRenderDrawColor(renderer, this->color.r, this->color.g, this->color.b, this->color.a);
-    SDL_RenderFillRect(renderer, &this->rect);
-
 }

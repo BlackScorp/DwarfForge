@@ -43,13 +43,12 @@ class Entity {
 public:
     std::string getId();
     void setId(std::string id);
-    virtual void onDraw(SDL_Renderer* renderer, float interpolation);
-    virtual void on(std::string eventName,std::function<void ()> callback);
+    virtual void on(std::string eventName,std::function<void (EventData *data)> callback);
     virtual void trigger(std::string eventName,EventData *data = nullptr);
 protected:
     std::string id;
 private:
-    std::map<std::string,std::function<void()>> bindings;
+    std::map<std::string,std::function<void(EventData *data)>> bindings;
 };
 
 #endif /* ENTITY_H */

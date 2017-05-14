@@ -30,7 +30,7 @@
  */
 
 
-#include <sstream>
+
 
 #include "EntityManager.h"
 
@@ -57,9 +57,11 @@ void EntityManager::update() {
 }
 
 void EntityManager::draw(SDL_Renderer* renderer, float interpolation) {
+    EventData eventData;
     
+    eventData.draw.renderer = renderer;
+    eventData.draw.interpolation = interpolation;
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
-           
-        iterator->second->onDraw(renderer, interpolation);
+        iterator->second->trigger("draw",&eventData);
     }
 }

@@ -38,6 +38,7 @@
 #include <vector>
 #include <SDL_render.h>
 #include <string>
+#include <sstream>
 
 class EntityManager {
 public:

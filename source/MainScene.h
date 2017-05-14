@@ -31,10 +31,11 @@
 
 #ifndef MAINSCENE_H
 #define MAINSCENE_H
-
+#include <cstddef>
 #include <SDL_render.h>
 #include "EntityManager.h"
 #include "Shapes/Rect.h"
+
 class MainScene {
 public:
     MainScene(SDL_Renderer* renderer,EntityManager* entityManager);
