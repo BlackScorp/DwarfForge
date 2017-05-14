@@ -23,52 +23,24 @@
  */
 
 /* 
- * File:   Rect.cpp
+ * File:   Events.h
  * Author: BlackScorp
- * 
- * Created on 27. April 2017, 20:34
+ *
+ * Created on 14. Mai 2017, 20:03
  */
 
+#ifndef EVENTS_H
+#define EVENTS_H
+
+typedef struct EventDraw{
+    SDL_Renderer* renderer;
+    float interpolation;
+} EventDraw;
+
+typedef union EventData{
+    EventDraw draw;
+}EventData;
 
 
-#include "Rect.h"
+#endif /* EVENTS_H */
 
-Rect::Rect(int width, int height) {
-    this->width = width;
-    this->height = height;
-    this->x = 0;
-    this->y = 0;
-
-}
-
-void Rect::setX(int x) {
-    this->x = x;
-}
-
-void Rect::setY(int y) {
-    this->y = y;
-}
-
-int Rect::getX() {
-    return this->x;
-}
-
-int Rect::getY() {
-    return this->y;
-}
-
-void Rect::setColor(SDL_Color &color) {
-    this->color = color;
-}
-
-void Rect::onDraw(SDL_Renderer* renderer, float interpolation) {
-
-
-    this->rect.x = this->x;
-    this->rect.y = this->y;
-    this->rect.w = this->width;
-    this->rect.h = this->height;
-    SDL_SetRenderDrawColor(renderer, this->color.r, this->color.g, this->color.b, this->color.a);
-    SDL_RenderFillRect(renderer, &this->rect);
-
-}

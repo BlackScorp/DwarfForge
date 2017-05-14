@@ -29,9 +29,9 @@
  * Created on 27. April 2017, 20:25
  */
 
-#include <iostream>
 
 #include "Entity.h"
+
 
 std::string Entity::getId() {
     return this->id;
@@ -42,6 +42,11 @@ std::string Entity::getId() {
 void Entity::onDraw(SDL_Renderer* renderer, float interpolation) {
     std::cout << "render\n";
 }
-void Entity::onUpdate() {
-    std::cout << "update\n";
+void  Entity::on(std::string eventName,std::function<void()> callback){
+    this->bindings[eventName] = callback;
+}
+void Entity::trigger(std::string eventName,EventData *data){
+     if (this->bindings.find(eventName) != this->bindings.end()){
+         this->bindings[eventName]();
+     };
 }

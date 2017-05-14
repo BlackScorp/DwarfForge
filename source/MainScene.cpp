@@ -32,30 +32,46 @@
 
 #include "MainScene.h"
 
-MainScene::MainScene(SDL_Renderer* renderer,EntityManager* entityManager) {
+MainScene::MainScene(SDL_Renderer* renderer, EntityManager* entityManager) {
     this->renderer = renderer;
     this->entityManager = entityManager;
 }
 
 void MainScene::render() {
 
-    SDL_SetRenderDrawColor(this->renderer, 123, 120, 115, 255);
-    SDL_RenderClear(this->renderer);
-    
-    Rect *testRect = new Rect(100,200);
-    
-    
+    int rendererWidth = 0, rendererHeight = 0;
+    Rect *backgroundRect, *testRect;
+    SDL_Color backgroundColor, color;
+
+    SDL_GetRendererOutputSize(this->renderer, &rendererWidth, &rendererHeight);
+
+
+    backgroundRect = new Rect(rendererWidth, rendererHeight);
+    backgroundColor.r = 123;
+    backgroundColor.g = 120;
+    backgroundColor.b = 115;
+    backgroundRect->setColor(backgroundColor);
+
+    entityManager->add(backgroundRect);
+
+
+
+    testRect = new Rect(100, 200);
     testRect->setX(100);
     testRect->setY(50);
-    
-    
-    SDL_Color color;
+    testRect->on("update", [testRect]() {
+        int x = testRect->getX();
+        x++;
+        if(x > 500){
+            x = 0;
+        }
+        testRect->setX(x);
+    });
+
     color.r = 90;
     color.b = 0;
     color.g = 0;
-    color.a = 10;
-    
+
     testRect->setColor(color);
     entityManager->add(testRect);
-   
 }

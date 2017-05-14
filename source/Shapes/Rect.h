@@ -39,19 +39,18 @@
 
 class Rect : public Entity {
 public:
-    Rect(int width,int height);
-    void onDraw(SDL_Renderer* renderer,float interpolation);
-    void onUpdate();
+    Rect(int width, int height);
+    void onDraw(SDL_Renderer* renderer, float interpolation);
     void setColor(SDL_Color &color);
     void setX(int x);
     void setY(int y);
+    int getX();
+    int getY();
 private:
     void updateTexture();
     SDL_Rect rect;
     SDL_Color color;
-    SDL_Surface * surface;
-    SDL_Texture * texture;
-    int x ;
+    int x;
     int y;
     int z;
     int width;

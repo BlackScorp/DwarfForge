@@ -22,7 +22,7 @@ SDL_DLL_PATH = $(SDL_PATH)\bin\SDL2.dll
 SDL_IMAGE_DLL_PATH = $(SDL_IMAGE_PATH)\bin\SDL2_image.dll
 LIB_PNG_DLL_PATH = $(SDL_IMAGE_PATH)\bin\libpng16-16.dll
 
-COMPILER_FLAGS = -Wall
+COMPILER_FLAGS = -Wall -std=c++11
 
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_Image
 

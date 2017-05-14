@@ -31,11 +31,12 @@
 
 
 #include <sstream>
+
 #include "EntityManager.h"
 
 void EntityManager::add(Entity *entity) {
     int size = entites.size();
-    
+
     std::ostringstream stream;
     stream << "entity" << ++size;
     std::string id = stream.str();
@@ -51,13 +52,14 @@ Entity* EntityManager::get(std::string Id) {
 
 void EntityManager::update() {
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
-        iterator->second->onUpdate();
+        iterator->second->trigger("update");
     }
 }
 
 void EntityManager::draw(SDL_Renderer* renderer, float interpolation) {
+    
     for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
-
+           
         iterator->second->onDraw(renderer, interpolation);
     }
 }
