@@ -39,6 +39,7 @@
 #include <SDL_render.h>
 #include <string>
 #include <sstream>
+#include <SDL_keyboard.h>
 
 class EntityManager {
 public:
@@ -46,6 +47,7 @@ public:
     void add(Entity* entity);
     void draw(SDL_Renderer* renderer, float interpolation);
     void update();
+    void keyDown(SDL_Keysym* keySym);
 private:
     std::map<std::string, Entity*> entites;
 };

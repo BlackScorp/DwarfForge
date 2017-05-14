@@ -116,7 +116,7 @@ void Game::poolEvents() {
                  * TODO : Move this to keyboard manager or something like this 
                  */
                 SDL_Keysym *keysym = &this->event.key.keysym;
-
+                this->entityManager->keyDown(keysym);
                 switch (keysym->sym) {
                     case SDLK_ESCAPE:
                     {

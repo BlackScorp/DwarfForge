@@ -60,19 +60,39 @@ void MainScene::render() {
     testRect->setX(100);
     testRect->setY(50);
 
-    testRect->on("update", [testRect](EventData *data) {
-        int x = testRect->getX();
-        x++;
-        if(x > 500){
-            x = 0;
-        }
-        testRect->setX(x);
-    });
-
     color.r = 90;
     color.b = 0;
     color.g = 0;
 
     testRect->setColor(color);
+    testRect->on("update", [testRect,&color](EventData * data) {
+       
+        
+        
+        
+        testRect->setColor(color);
+    });
+
+    testRect->on("keyDown", [testRect](EventData * data) {
+        int y = testRect->getY();
+        int x = testRect->getX();
+        switch (data->keySym->sym) {
+            case SDLK_w:
+                y -= 10;
+                break;
+            case SDLK_s:
+                y += 10;
+                break;
+            case SDLK_a:
+                x -= 10;
+                break;
+            case SDLK_d:
+                x += 10;
+                break;
+        }
+        testRect->setX(x);
+        testRect->setY(y);
+    });
+
     entityManager->add(testRect);
 }

@@ -32,6 +32,9 @@
 #ifndef EVENTS_H
 #define EVENTS_H
 
+#include <SDL_keyboard.h>
+
+
 typedef struct EventDraw{
     SDL_Renderer* renderer;
     float interpolation;
@@ -39,6 +42,7 @@ typedef struct EventDraw{
 
 typedef union EventData{
     EventDraw draw;
+    SDL_Keysym* keySym;
 }EventData;
 
 

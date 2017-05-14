@@ -65,3 +65,12 @@ void EntityManager::draw(SDL_Renderer* renderer, float interpolation) {
         iterator->second->trigger("draw",&eventData);
     }
 }
+void EntityManager::keyDown(SDL_Keysym* keySym) {
+    EventData eventData;
+    
+    eventData.keySym = keySym;
+
+    for (std::map<std::string, Entity* >::iterator iterator = entites.begin(); iterator != entites.end(); ++iterator) {
+        iterator->second->trigger("keyDown",&eventData);
+    }
+}
