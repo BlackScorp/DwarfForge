@@ -39,8 +39,8 @@ MainScene::MainScene(SDL_Renderer* renderer,EntityManager* entityManager) {
 
 void MainScene::render() {
 
-    SDL_SetRenderDrawColor(renderer, 123, 120, 115, 255);
-    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(this->renderer, 123, 120, 115, 255);
+   
     
     Rect *testRect = new Rect(100,200);
     

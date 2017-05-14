@@ -46,8 +46,11 @@ public:
     void setX(int x);
     void setY(int y);
 private:
+    void updateTexture();
     SDL_Rect rect;
     SDL_Color color;
+    SDL_Surface * surface;
+    SDL_Texture * texture;
     int x ;
     int y;
     int z;
